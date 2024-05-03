@@ -24,17 +24,17 @@ int main()
         {Vector2{400.f, 500.f}, LoadTexture("nature_tileset/Log.png")}};
 
     // init  enemies
-    Enemy *enemies[]{
-        new Enemy{Vector2{800.f, 300.f}, LoadTexture("characters/goblin_idle_spritesheet.png"), LoadTexture("characters/goblin_run_spritesheet.png")},
-        new Enemy{Vector2{500.f, 700.f}, LoadTexture("characters/slime_idle_spritesheet.png"), LoadTexture("characters/slime_run_spritesheet.png")},
-    };
+    // Enemy *enemies[]{
+    //     new Enemy{Vector2{800.f, 300.f}, LoadTexture("characters/goblin_idle_spritesheet.png"), LoadTexture("characters/goblin_run_spritesheet.png")},
+    //     new Enemy{Vector2{500.f, 700.f}, LoadTexture("characters/slime_idle_spritesheet.png"), LoadTexture("characters/slime_run_spritesheet.png")},
+    // };
 
     // goblin.setTarget(&knight);
 
-    for (auto enemy : enemies)
-    {
-        enemy->setTarget(&knight);
-    }
+    // for (auto enemy : enemies)
+    // {
+    //     enemy->setTarget(&knight);
+    // }
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
@@ -83,25 +83,13 @@ int main()
                 knight.undoMovement();
         }
 
-        // draw enemies
-        for (auto enemy : enemies)
-        {
-            enemy->tick(GetFrameTime());
 
-            if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-            {
-                if (CheckCollisionRecs(enemy->getCollisionRec(), knight.getweaponCollisionRec()))
-                {
-                    enemy->setAive(false);
-                }
-            }
-        }
 
         EndDrawing();
     }
 
     UnloadTexture(map);
-    // UnloadTexture(knightIdle);
+    // UnloadTexture(knightIdle);  // make destructor
     // UnloadTexture(knightRun);
     CloseWindow();
 }
